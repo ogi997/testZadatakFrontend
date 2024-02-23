@@ -1,0 +1,60 @@
+<div class="center">
+
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Broj</th>
+            <th scope="col">Datum</th>
+            <th scope="col">Partner</th>
+            <th scope="col">Akcija</th>
+          </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let faktura of fakture">
+                <td>{{ faktura.broj }}</td>
+                <td>{{ faktura.datum | date }}</td>
+                <td>{{ faktura.partner }}</td>
+                <td>
+                  <div class="padding-5">
+                    <button class="btn btn-primary margin-right-5" (click)="otvoriFakturu(faktura.id)">Otvori stavke</button>
+                    <button class="btn btn-warning margin-right-5" (click)="azurirajFakturu(faktura.id)">Azuriraj</button>
+                    <button class="btn btn-danger" (click)="obrisiFakturu(faktura.id)">Obrisi</button>
+                  </div>
+                </td>
+              </tr>
+        </tbody>
+      </table>
+
+      <div>
+        <h3>Dodajte novu fakturu</h3>
+
+        <div class="col-md-12">
+          <form [formGroup]="form">
+            <div class="row" style="margin-bottom: 10px">
+              <div class="col">
+                <label for="broj" class="form-label">Broj*</label>
+                <input required type="number" class="form-control" id="broj" formControlName="broj" name="broj" aria-describedby="broj">
+              </div>
+              <div class="col">
+                <label for="datum" class="form-label">Datum*</label>
+                <input required type="datetime-local" class="form-control" id="datum" formControlName="datum" name="datum">
+              </div>
+            </div>
+
+            <div class="row" style="margin-bottom: 10px">
+              <div class="col">
+                <label for="partner" class="form-label">Partner*</label>
+                <input required type="text" class="form-control" id="partner" formControlName="partner" name="partner" aria-describedby="partner">
+              </div>
+        
+            </div>
+            <div class="row">
+              <input [disabled]="!form.valid" (click)="dodajFakturu(form)" type="submit" id="submit" class="btn btn-primary btn-lg" [value]="form.valid ? 'Sacuvaj' : 'Popunite formu'" />
+            </div>
+            </form>
+          </div>
+      </div>
+     
+
+
+</div>

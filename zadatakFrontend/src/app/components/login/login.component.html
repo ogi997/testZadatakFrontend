@@ -1,0 +1,18 @@
+<div class="background centered" style="min-height: calc(100% - 52px - 96px);">
+    <div class="cardEffect">
+      <h1>Login page</h1>
+      <form [formGroup]="form">
+        <div class="mb-3">
+          <label for="email" class="form-label">Email address</label>
+          <input formControlName="email" type="email" class="form-control" id="email" aria-describedby="emailHelp" />
+        </div>
+
+        <div class="mb-3">
+          <label for="password" class="form-label">Password</label>
+          <input formControlName="password" type="password" class="form-control" id="password" aria-describedby="passwordHelp" />
+        </div>
+
+        <input [disabled]="!form.valid" (click)="login(form)" type="submit" class="btn btn-primary btn-lg w-100" [value]="form.valid ? 'Login' : 'Popunite polja'" />
+      </form>
+    </div>
+</div>

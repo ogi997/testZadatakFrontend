@@ -1,0 +1,17 @@
+.background {
+    background-color: #ecf0f1;
+    padding: 20px 10px 20px 10px;
+  }
+  
+  .cardEffect {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+  }
+  
+  /*.centered {*/
+  /*  display: flex;*/
+  /*  align-items: center;*/
+  /*  justify-content: center;*/
+  /*  flex-direction: column;*/
+  /*}*/

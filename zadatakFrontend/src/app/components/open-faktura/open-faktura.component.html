@@ -1,0 +1,114 @@
+<div class="center">
+    <div>
+        <h3>Zaglavlje fakture</h3>    
+    </div>
+    
+    <div *ngIf="faktura != undefined" class="fakturaHeader">
+        <div><b>Broj: </b>{{faktura.broj}}</div>
+        <div><b>Datum: </b>{{faktura.datum | date}}</div>
+        <div><b>Partner: </b>{{faktura.partner}}</div>
+        <div><b>Iznos bez PDV: </b>{{faktura.iznosBezPdv}}</div>
+        <div><b>Posto Rabata: </b>{{faktura.postoRabata}}</div>
+        <div><b>rabat: </b>{{faktura.rabat}}</div>
+        <div><b>iznosSaRabatomBezPdv: </b>{{faktura.iznosSaRabatomBezPdv}}</div>
+        <div><b>pdv: </b>{{faktura.pdv}}</div>
+        <div><b>ukupno: </b>{{faktura.ukupno}}</div>       
+    </div>
+
+    <div *ngIf="faktura != null">
+        <div>
+            <h3>Stavke fakture</h3>
+        </div>
+
+        <div *ngIf="faktura.stavkeFakture == null">
+            <p>Za ovu fakturu nema stavki.</p>
+        </div>
+
+        <div *ngIf="faktura.stavkeFakture != null">
+            <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">rbr</th>
+                    <th scope="col">nazivArtikla</th>
+                    <th scope="col">kolicina</th>
+                    <th scope="col">cijena</th>
+                    <th scope="col">iznosBezPdv</th>
+                    <th scope="col">postoRabata</th>
+                    <th scope="col">rabat</th>
+                    <th scope="col">iznosSaRabatomBezPdv</th>
+                    <th scope="col">pdv</th>
+                    <th scope="col">ukupno</th>
+                    <th scope="col">Akcija</th>
+                  </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let stavkeFakture of faktura.stavkeFakture">
+                        <td>{{ stavkeFakture.rbr }}</td>
+                        <td>{{ stavkeFakture.nazivArtikla }}</td>
+                        <td>{{ stavkeFakture.kolicina }}</td>
+                        <td>{{ stavkeFakture.cijena}}</td>
+                        <td>{{ stavkeFakture.iznosBezPdv}}</td>
+                        <td>{{ stavkeFakture.postoRabata}}</td>
+                        <td>{{ stavkeFakture.rabat}}</td>
+                        <td>{{ stavkeFakture.iznosSaRabatomBezPdv}}</td>
+                        <td>{{ stavkeFakture.pdv}}</td>
+                        <td>{{ stavkeFakture.ukupno}}</td>
+                        <td>
+                            <button class="btn btn-warning margin-right-5" (click)="azurirajStavku(stavkeFakture.id)">Azuriraj</button>
+                            <button class="btn btn-danger" (click)="deleteStavku(stavkeFakture.id)">Obrisi</button>
+                        </td>
+                      </tr>
+                  
+                </tbody>
+              </table>
+
+
+              <h3>Dodaj novu stavku:</h3>
+              <div class="col-md-12">
+                  <form [formGroup]="form">
+                    <!-- <form> -->
+                    <div class="row" style="margin-bottom: 10px">
+                      <div class="col">
+                        <label for="rbr" class="form-label">rbr*</label>
+                        <input required type="number" class="form-control" id="rbr" formControlName="rbr" name="rbr" aria-describedby="rbr">
+                      </div>
+                      <div class="col">
+                        <label for="nazivArtikla" class="form-label">Naziv Artikla*</label>
+                        <input required type="text" class="form-control" id="nazivArtikla" formControlName="nazivArtikla" name="nazivArtikla">
+                      </div>
+                    </div>
+      
+      
+      
+                    <div class="row" style="margin-bottom: 10px">
+                      <div class="col">
+                        <label class="form-check-label" for="kolicina">Kolicina*</label>
+                        <input required type="number" class="form-control" id="kolicina" formControlName="kolicina" name="kolicina">
+                      </div>
+      
+                      <div class="col">
+                        <label class="form-check-label" for="cijena">Cijena*</label>
+                        <input required type="number" class="form-control" id="cijena" formControlName="cijena" name="cijena">
+                      </div>
+                    </div>
+      
+      
+                    <div class="row" style="margin-bottom: 10px">
+      
+                      <div class="col">
+                        <label class="form-check-label" for="postoRabata">Posto rabata*</label>
+                        <input required type="number" class="form-control" id="postoRabata" formControlName="postoRabata" name="postoRabata">
+                      </div>
+      
+                    </div>
+      
+                    <div class="row">
+                      <input [disabled]="!form.valid" (click)="dodajStavkuForme(form)" type="submit" id="submit" class="btn btn-primary btn-lg" [value]="form.valid ? 'Sacuvaj' : 'Popunite formu'" />
+                    </div>
+                  </form>
+      </div>
+
+
+        </div>
+    </div>
+</div>
